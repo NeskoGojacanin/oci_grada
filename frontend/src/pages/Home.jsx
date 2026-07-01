@@ -89,7 +89,7 @@ function Home() {
                 <div className="col-md-4 mb-4">
                     <div className="card h-100">
                         <div className="card-body">
-                            <h4>📢 Prijavi problem</h4>
+                            <h4> Prijavi problem</h4>
                             <p>Dodaj novu objavu sa opisom, lokacijom i fotografijom problema.</p>
                         </div>
                     </div>
@@ -98,7 +98,7 @@ function Home() {
                 <div className="col-md-4 mb-4">
                     <div className="card h-100">
                         <div className="card-body">
-                            <h4>📍 Prati prijavu</h4>
+                            <h4> Prati prijavu</h4>
                             <p>Nakon slanja prijave možeš pratiti njen trenutni status.</p>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ function Home() {
                 <div className="col-md-4 mb-4">
                     <div className="card h-100">
                         <div className="card-body">
-                            <h4>🏛️ Saradnja sa službama</h4>
+                            <h4> Saradnja sa službama</h4>
                             <p>Koordinatori raspoređuju prijave nadležnim gradskim službama.</p>
                         </div>
                     </div>

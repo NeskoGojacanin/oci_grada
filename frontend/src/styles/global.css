@@ -127,3 +127,102 @@ h3 {
 .btn:hover {
     transform: scale(1.03);
 }
+
+
+/* ================= DARK MODE ================= */
+
+.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.dark-mode .card-header {
+    background-color: #0b5ed7;
+    color: white;
+}
+
+.dark-mode .table {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.dark-mode .table th,
+.dark-mode .table td {
+    color: white;
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select,
+.dark-mode textarea {
+    background-color: #2d2d2d;
+    color: white;
+    border: 1px solid #555;
+}
+
+.dark-mode .form-control::placeholder,
+.dark-mode textarea::placeholder {
+    color: #bbb;
+}
+
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus,
+.dark-mode textarea:focus {
+    background-color: #2d2d2d;
+    color: white;
+}
+
+.dark-mode .navbar {
+    background-color: #111 !important;
+}
+
+.dark-mode .btn-outline-light {
+    border-color: white;
+}
+
+
+.toast-custom {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 280px;
+}
+
+.dark-mode .table,
+.dark-mode .table-striped,
+.dark-mode .table-bordered {
+    --bs-table-bg: #1e1e1e;
+    --bs-table-color: #f1f1f1;
+    --bs-table-striped-bg: #2a2a2a;
+    --bs-table-striped-color: #f1f1f1;
+    --bs-table-border-color: #444;
+    color: #f1f1f1;
+}
+
+.dark-mode .table thead th {
+    background-color: #111;
+    color: #fff;
+    border-color: #444;
+}
+
+.dark-mode .table tbody td {
+    color: #f1f1f1;
+    border-color: #444;
+}
+
+.dark-mode .table select,
+.dark-mode .table .form-select {
+    background-color: #2d2d2d;
+    color: #fff;
+    border-color: #555;
+}
+
+.dark-mode .table option {
+    background-color: #2d2d2d;
+    color: #fff;
+}

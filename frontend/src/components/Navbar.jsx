@@ -1,7 +1,26 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Navbar() {
     const navigate = useNavigate();
+
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem("theme") === "dark"
+    );
+
+    useEffect(() => {
+        if (darkMode) {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+        }
+    }, [darkMode]);
+
+    const promijeniTemu = () => {
+        setDarkMode(!darkMode);
+    };
 
     const korisnik = JSON.parse(localStorage.getItem("korisnik"));
     const token = localStorage.getItem("token");
@@ -65,6 +84,13 @@ function Navbar() {
                             </button>
                         </>
                     )}
+
+                    <button
+                        className="btn btn-outline-light btn-sm ms-3"
+                        onClick={promijeniTemu}
+                    >
+                        {darkMode ? " Light" : " Dark"}
+                    </button>
                 </div>
             </div>
         </nav>

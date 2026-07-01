@@ -1,9 +1,21 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/authService";
+import ToastMessage from "../components/ToastMessage";
 
 function Login() {
     const navigate = useNavigate();
+    const [poruka, setPoruka] = useState("");
+    const [tipPoruke, setTipPoruke] = useState("success");
+
+    const prikaziPoruku = (tekst, tip = "success") => {
+        setPoruka(tekst);
+        setTipPoruke(tip);
+
+        setTimeout(() => {
+            setPoruka("");
+        }, 3000);
+    };
 
     const [formData, setFormData] = useState({
         email: "",
@@ -16,7 +28,6 @@ function Login() {
             [e.target.name]: e.target.value
         });
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,22 +37,27 @@ function Login() {
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("korisnik", JSON.stringify(response.data.korisnik));
 
-            alert(response.data.message);
+            prikaziPoruku(response.data.message, "uspjesna prijava");
 
             navigate("/");
+            setTimeout(() => {
+                navigate("/");
+            }, 3000);
         } catch (error) {
             if (error.response) {
                 alert(error.response.data.message);
             } else {
-                alert("Greška na serveru.");
+                prikaziPoruku("Greška na serveru.", "opasnost");
             }
         }
     };
 
     return (
+        
         <div className="row justify-content-center mt-5">
             <div className="col-md-5">
                 <div className="card">
+                    <ToastMessage message={poruka} type={tipPoruke} />
                     <div className="card-header">
                         <h3>Login</h3>
                     </div>
