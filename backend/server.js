@@ -12,6 +12,8 @@ const objavaRoutes = require("./routes/objavaRoutes");
 const komentarRoutes = require("./routes/komentarRoutes");
 const prijavaRoutes = require("./routes/prijavaRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const kategorijaRoutes = require("./routes/kategorijaRoutes");
+const sluzbaRoutes = require("./routes/sluzbaRoutes");
 
 
 const app = express();
@@ -26,6 +28,9 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/komentari", komentarRoutes);
 app.use("/api/prijave", prijavaRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/kategorije", kategorijaRoutes);
+app.use("/api/sluzbe", sluzbaRoutes);
+
 
 
 app.get("/", (req, res) => {

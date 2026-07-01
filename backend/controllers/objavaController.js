@@ -63,20 +63,25 @@ const dodajObjavu = (req, res) => {
 
 const sveObjave = (req, res) => {
     const sql = `
-        SELECT 
-            o.id_objave,
-            o.naslov,
-            o.opis,
-            o.lokacija,
-            o.status,
-            o.datum_objave,
-            k.naziv AS kategorija,
-            korisnik.username AS autor
-        FROM Objava o
-        JOIN Kategorija k ON o.id_kategorije = k.id_kategorije
-        JOIN Korisnik korisnik ON o.id_korisnika = korisnik.id_korisnika
-        ORDER BY o.datum_objave DESC
-    `;
+    SELECT 
+        o.id_objave,
+        o.naslov,
+        o.opis,
+        o.lokacija,
+        o.status,
+        o.datum_objave,
+        k.naziv AS kategorija,
+        korisnik.username AS autor,
+        s.putanja AS slika,
+        ns.naziv AS sluzba
+    FROM Objava o
+    JOIN Kategorija k ON o.id_kategorije = k.id_kategorije
+    JOIN Korisnik korisnik ON o.id_korisnika = korisnik.id_korisnika
+    LEFT JOIN Slika s ON o.id_objave = s.id_objave
+    LEFT JOIN Prijava p ON o.id_objave = p.id_objave
+    LEFT JOIN NadleznaSluzba ns ON p.id_sluzbe = ns.id_sluzbe
+    ORDER BY o.datum_objave DESC
+`;
 
     db.query(sql, (err, results) => {
         if (err) {
@@ -92,21 +97,21 @@ const jednaObjava = (req, res) => {
     const { id } = req.params;
 
     const sql = `
-        SELECT 
-            o.id_objave,
-            o.id_korisnika,
-            o.id_kategorije,
-            o.naslov,
-            o.opis,
-            o.lokacija,
-            o.status,
-            o.datum_objave,
-            k.naziv AS kategorija,
-            korisnik.username AS autor
-        FROM Objava o
-        JOIN Kategorija k ON o.id_kategorije = k.id_kategorije
-        JOIN Korisnik korisnik ON o.id_korisnika = korisnik.id_korisnika
-        WHERE o.id_objave = ?
+       SELECT
+    o.id_objave,
+    o.naslov,
+    o.opis,
+    o.lokacija,
+    o.status,
+    o.datum_objave,
+    k.naziv AS kategorija,
+    korisnik.username AS autor,
+    s.putanja AS slika
+FROM Objava o
+JOIN Kategorija k ON o.id_kategorije = k.id_kategorije
+JOIN Korisnik korisnik ON o.id_korisnika = korisnik.id_korisnika
+LEFT JOIN Slika s ON o.id_objave = s.id_objave
+ORDER BY o.datum_objave DESC
     `;
 
     db.query(sql, [id], (err, results) => {
