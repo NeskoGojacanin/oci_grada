@@ -2,6 +2,37 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../config/db");
 
+const adminLogin = (req, res) => {
+    const { username, password } = req.body;
+
+    if (
+        username !== process.env.ADMIN_USERNAME ||
+        password !== process.env.ADMIN_PASSWORD
+    ) {
+        return res.status(401).json({ message: "Pogrešan admin username ili password." });
+    }
+
+    const token = jwt.sign(
+        {
+            username: username,
+            uloga: "admin"
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "24h" }
+    );
+
+    res.json({
+        message: "Admin uspješno prijavljen.",
+        token,
+        admin: {
+            username,
+            uloga: "admin"
+        }
+    });
+};
+
+
+
 const register = async (req, res) => {
     const { username, email, password, ime, prezime, telefon } = req.body;
 
@@ -95,5 +126,6 @@ const login = (req, res) => {
 
 module.exports = {
     register,
-    login 
+    login,
+    adminLogin
 };

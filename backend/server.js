@@ -11,6 +11,8 @@ const authMiddleware = require("./middleware/authMiddleware");
 const objavaRoutes = require("./routes/objavaRoutes");
 const komentarRoutes = require("./routes/komentarRoutes");
 const prijavaRoutes = require("./routes/prijavaRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+
 
 const app = express();
 
@@ -23,6 +25,7 @@ app.use("/api/objave", objavaRoutes);
 app.use("/uploads", express.static("uploads"));
 app.use("/api/komentari", komentarRoutes);
 app.use("/api/prijave", prijavaRoutes);
+app.use("/api/admin", adminRoutes);
 
 
 app.get("/", (req, res) => {
